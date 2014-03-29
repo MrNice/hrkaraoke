@@ -8,6 +8,11 @@ angular.module('karaokeApp')
       'Karma'
     ];
 
+    $scope.buttons = {
+      all: 'active',
+      mine: ''
+    };
+
     var songsRef = new Firebase("https://hrkaraoke.firebaseio.com/songs");
 
     $scope.songs = $firebase(songsRef);

@@ -1,7 +1,7 @@
   <div class="header">
     <ul class="nav nav-pills pull-right">
-      <li class="Active"><a ng-click="currentFilter = all">All</a></li>
-      <li class=""><a ng-click="currentFilter = me">Me</a></li>
+      <li class="{{ buttons.all }}"><a ng-click="currentFilter = all">All</a></li>
+      <li class="{{ buttons.mine }}"><a ng-click="currentFilter = me">My Songs</a></li>
       <li ng-cloak ng-show-auth="login" ng-controller="LoginController"><a href="#" ng-click="logout()">Log Out</a></li>
       <li ng-cloak ng-show-auth="['logout','error']" ng-controller="LoginController"><a href="#vote" ng-click="loginGithub()">Log In With Github</a></li>
     </ul>
