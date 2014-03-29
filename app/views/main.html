@@ -1,0 +1,12 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li class="active"><a ng-href="#all">All</a></li>
+    <li><a ng-href="#me">Me</a></li>
+    <li ng-cloak ng-show-auth="login" ng-controller="LoginController"><a href="#" ng-click="logout()">Log Out</a></li>
+    <li ng-cloak ng-show-auth="['logout','error']" ng-controller="LoginController"><a href="#" ng-click="loginGithub()">Log In With Github</a></li>
+  </ul>
+  <h3 class="text-muted">HR karaoke</h3>
+  <footer>
+    <button class="btn btn-primary btn-block">Choose a song!</button>
+  </footer>
+</div>
