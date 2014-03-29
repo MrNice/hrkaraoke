@@ -12,7 +12,6 @@ angular.module('karaokeApp')
     $scope.me = 'Active';
     $scope.all = '';
 
-    console.log();
 
     $scope.newSong = { owner: 'nicholas'};
 

@@ -2,17 +2,15 @@
 
 angular.module('karaokeApp')
   .controller('LoginController', function($scope, simpleLogin, $location) {
-    $scope.pass = null;
     $scope.err = null;
-    $scope.email = null;
+    $scope.user = null;
     $scope.confirm = null;
     $scope.createMode = false;
-
+   
     $scope.loginGithub = function(cb){
       console.log('Github Login');
-      simpleLogin.loginGithub({
-        rememberMe: true,
-        scope: 'user'
+      simpleLogin.loginGithub(function(user) {
+        console.log(user);
       });
     };
 

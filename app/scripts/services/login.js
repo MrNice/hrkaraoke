@@ -29,57 +29,25 @@ angular.module('angularfire.login', ['firebase', 'angularfire.firebase'])
        * @param {Function} [callback]
        * @returns {*}
        */
-      loginGithub: function(callback) {
+       loginGithub: function(callback) {
         assertAuth();
         auth.$login('github', {
           rememberMe: true,
           scope: 'user'
         }).then(function(user){
+          console.log('the user looks like this first: ', user);
+          firebaseRef('users/'+ user.username).set({ username: user.displayName, avatar: user.avatar_url }, function(err) {
+          console.log(callback);
           if( callback ) {
-            console.log('The user looks like this first: ', user);
-          //todo-bug https://github.com/firebase/angularFire/issues/199
-            $timeout(function() {
-            console.log('The user looks like this second: ', user);
-              callback(null, user);
-            });
-          }
-        }, callback);
+            callback(user);
+          };
+        });
+      }, callback);
       },
 
-      loginPassword: function(email, pass, callback) {
+      createAccount: function(user, callback) {
         assertAuth();
-        auth.$login('password', {
-          email: email,
-          password: pass,
-          rememberMe: true
-        }).then(function(user) {
-            if( callback ) {
-              //todo-bug https://github.com/firebase/angularFire/issues/199
-              $timeout(function() {
-                callback(null, user);
-              });
-            }
-          }, callback);
-      },
-
-      changePassword: function(opts) {
-        assertAuth();
-        var cb = opts.callback || function() {};
-        if( !opts.oldpass || !opts.newpass ) {
-          $timeout(function(){ cb('Please enter a password'); });
-        }
-        else if( opts.newpass !== opts.confirm ) {
-          $timeout(function() { cb('Passwords do not match'); });
-        }
-        else {
-          auth.$changePassword(opts.email, opts.oldpass, opts.newpass)
-            .then(function() { cb(null); }, cb);
-        }
-      },
-
-      createAccount: function(email, pass, callback) {
-        assertAuth();
-        auth.$createUser(email, pass).then(function(user) { callback(null, user); }, callback);
+        auth.$createUser(user).then(function(user) { callback(null, user); }, callback);
       },
 
       createProfile: profileCreator
@@ -87,19 +55,9 @@ angular.module('angularfire.login', ['firebase', 'angularfire.firebase'])
   })
 
   .factory('profileCreator', function(firebaseRef, $timeout) {
-    return function(id, email, callback) {
-      function firstPartOfEmail(email) {
-        return ucfirst(email.substr(0, email.indexOf('@'))||'');
-      }
+    return function(user, callback) {
 
-      function ucfirst (str) {
-        // credits: http://kevin.vanzonneveld.net
-        str += '';
-        var f = str.charAt(0).toUpperCase();
-        return f + str.substr(1);
-      }
-
-      firebaseRef('users/'+id).set({email: email, name: firstPartOfEmail(email)}, function(err) {
+      firebaseRef('users/'+ user.username).set({ username: user.displayName, avatar: avatar_url }, function(err) {
         //err && console.error(err);
         if( callback ) {
           $timeout(function() {
