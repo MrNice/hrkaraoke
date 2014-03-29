@@ -36,9 +36,10 @@ angular.module('angularfire.login', ['firebase', 'angularfire.firebase'])
           scope: 'user'
         }).then(function(user){
           if( callback ) {
-
+            console.log('The user looks like this first: ', user);
           //todo-bug https://github.com/firebase/angularFire/issues/199
             $timeout(function() {
+            console.log('The user looks like this second: ', user);
               callback(null, user);
             });
           }

@@ -1,6 +1,6 @@
 <div class="header">
   <ul class="nav nav-pills pull-right">
-    <li><a href="/vote">Go Vote</a></li>
+    <li><a href="#vote">Go Vote</a></li>
     <li ng-cloak ng-show-auth="login" ng-controller="LoginController"><a href="#" ng-click="logout()">Log Out</a></li>
     <li ng-cloak ng-show-auth="['logout','error']" ng-controller="LoginController"><a href="#vote" ng-click="loginGithub()">Log In With Github</a></li>
   </ul>

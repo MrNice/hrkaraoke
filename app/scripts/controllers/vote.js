@@ -13,6 +13,22 @@ angular.module('karaokeApp')
       mine: ''
     };
 
+    $scope.filterexpr = "";
+
+    $scope.getMine = function(){
+      $scope.buttons = {
+        all: '',
+        mine: 'active'
+      };
+    };
+
+    $scope.getAll = function(){
+     $scope.buttons = {
+        all: 'active',
+        mine: ''
+      };
+    };
+
     var songsRef = new Firebase("https://hrkaraoke.firebaseio.com/songs");
 
     $scope.songs = $firebase(songsRef);

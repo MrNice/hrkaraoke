@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('karaokeApp')
-  .controller('SuggestCtrl', function ($scope, $firebase) {
+  .controller('SuggestCtrl', function ($rootScope, $scope, $firebase, simpleLogin) {
     $scope.singer = 'me';
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
@@ -11,7 +11,10 @@ angular.module('karaokeApp')
 
     $scope.me = 'Active';
     $scope.all = '';
-    $scope.newSong;
+
+    console.log();
+
+    $scope.newSong = { owner: 'nicholas'};
 
     var usersRef = new Firebase("https://hrkaraoke.firebaseio.com/users");
 
