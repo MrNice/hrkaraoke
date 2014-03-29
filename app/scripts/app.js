@@ -16,10 +16,10 @@ angular.module('karaokeApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/login', {
-        authRequired: false, // if true, must log in before viewing this page
-        templateUrl: 'views/login.html',
-        controller: 'LoginController'
+      .when('/vote', {
+        authRequired: true, // if true, must log in before viewing this page
+        templateUrl: 'views/vote.html',
+        controller: 'VoteCtrl'
       })
       .otherwise({
         redirectTo: '/'
