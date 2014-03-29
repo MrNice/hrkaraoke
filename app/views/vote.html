@@ -1,1 +1,7 @@
-<p>This is the vote view.</p>
+<ul class="" ng-model="songs" ng-repeat="song in songs">
+  <li>{{ song.title }}</li>
+  <li>{{ song.singer }}</li>
+  <li>{{ song.artist }}</li>
+  <li>{{ song.votes }}</li>
+</ul>
+<button class="btn btn-primary" ng-click="addSong()">Add Song</button>

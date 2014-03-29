@@ -13,6 +13,7 @@ angular.module('karaokeApp', [
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
+        authRequired: false,
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
