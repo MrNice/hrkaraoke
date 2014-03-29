@@ -11,13 +11,19 @@ angular.module('karaokeApp')
 
     $scope.me = 'Active';
     $scope.all = '';
+    $scope.newSong;
 
-    var usersRef = new Firebase("https://hrkaraoke.firebaseio.com/songs");
+    var usersRef = new Firebase("https://hrkaraoke.firebaseio.com/users");
 
     $scope.users = $firebase(usersRef);
 
+    var songsRef = new Firebase("https://hrkaraoke.firebaseio.com/songs");
+
+    $scope.songs = $firebase(songsRef);
+
     $scope.submitSong = function(song) {
-      
+      console.log('submitting', song);
+      $scope.songs.$add(song);
     };
 
   });
