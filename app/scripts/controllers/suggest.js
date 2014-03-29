@@ -9,8 +9,15 @@ angular.module('karaokeApp')
       'Karma'
     ];
 
+    $scope.me = 'Active';
+    $scope.all = '';
+
     var usersRef = new Firebase("https://hrkaraoke.firebaseio.com/songs");
 
     $scope.users = $firebase(usersRef);
+
+    $scope.submitSong = function(song) {
+      
+    };
 
   });

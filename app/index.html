@@ -19,21 +19,13 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="karaokeApp">
+  <body ng-app="karaokeApp" ng-model="currentFilter">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header">
-      <ul class="nav nav-pills pull-right">
-        <li class="active"><a ng-href="#all">All</a></li>
-        <li><a ng-href="#me">Me</a></li>
-        <li ng-cloak ng-show-auth="login" ng-controller="LoginController"><a href="#" ng-click="logout()">Log Out</a></li>
-        <li ng-cloak ng-show-auth="['logout','error']" ng-controller="LoginController"><a href="#vote" ng-click="loginGithub()">Log In With Github</a></li>
-      </ul>
-      <h3 class="text-muted">HR karaoke</h3>
-    </div>
+
     <div class="container" ng-view=""></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
