@@ -17,6 +17,11 @@ angular.module('karaokeApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/suggest', {
+        authRequired: true, // if true, must log in before viewing this page
+        templateUrl: 'views/suggest.html',
+        controller: 'SuggestCtrl'
+      })
       .when('/vote', {
         authRequired: true, // if true, must log in before viewing this page
         templateUrl: 'views/vote.html',
