@@ -20,13 +20,18 @@ angular.module('karaokeApp')
     }
 
     $scope.submitSong = function(song) {
+      console.log('fuck this');
+      if(!($scope.user)) {
+        console.log('NO USER');
+        return;
+      }
+      console.log($scope.user.username);
       var songsRef = new Firebase("https://hrkaraoke.firebaseio.com/songs");
 
 
       var songs = $firebase(songsRef);
-
+      song['owner'] = $scope.user.username;
       songs.$add(song);
-
     }
 
   });
