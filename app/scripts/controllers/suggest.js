@@ -2,30 +2,31 @@
 
 angular.module('karaokeApp')
   .controller('SuggestCtrl', function ($rootScope, $scope, $firebase, simpleLogin) {
-    $scope.singer = 'me';
+    $scope.me = {};
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-    $scope.me = 'Active';
-    $scope.all = '';
+    console.log('Rootscope: ', $rootScope.user);
 
-
-    $scope.newSong = { owner: 'nicholas'};
-
-    var usersRef = new Firebase("https://hrkaraoke.firebaseio.com/users");
-
-    $scope.users = $firebase(usersRef);
-
-    var songsRef = new Firebase("https://hrkaraoke.firebaseio.com/songs");
-
-    $scope.songs = $firebase(songsRef);
+    if(!($rootScope.user)){
+      simpleLogin.loginGithub(function(user) {
+        $rootScope.user = user;
+        $scope.user = $rootScope.user;
+        $scope.newSong = { owner: $scope.user.username };
+      });
+    }
 
     $scope.submitSong = function(song) {
-      console.log('submitting', song);
-      $scope.songs.$add(song);
-    };
+      var songsRef = new Firebase("https://hrkaraoke.firebaseio.com/songs");
+
+
+      var songs = $firebase(songsRef);
+
+      songs.$add(song);
+
+    }
 
   });

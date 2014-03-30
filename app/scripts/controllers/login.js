@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('karaokeApp')
-  .controller('LoginController', function($scope, simpleLogin, $location) {
+  .controller('LoginController', function($rootScope, $scope, simpleLogin, $location) {
     $scope.err = null;
     $scope.user = null;
     $scope.confirm = null;
@@ -10,7 +10,7 @@ angular.module('karaokeApp')
     $scope.loginGithub = function(cb){
       console.log('Github Login');
       simpleLogin.loginGithub(function(user) {
-        console.log(user);
+        $rootScope.user = user;
       });
     };
 

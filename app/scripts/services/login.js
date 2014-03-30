@@ -36,7 +36,7 @@ angular.module('angularfire.login', ['firebase', 'angularfire.firebase'])
           scope: 'user'
         }).then(function(user){
           console.log('the user looks like this first: ', user);
-          firebaseRef('users/'+ user.username).set({ username: user.displayName, avatar: user.avatar_url }, function(err) {
+          firebaseRef('users/'+ user.username).set({ username: user.displayName, avatar: user.avatar_url, songcount: 0 }, function(err) {
           console.log(callback);
           if( callback ) {
             callback(user);
